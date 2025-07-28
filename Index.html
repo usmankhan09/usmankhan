@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team Top Form</title>
+</head>
+<body>
+  <h2>Submit Your Info</h2>
+  <form id="myForm">
+    <input type="text" name="FullName" placeholder="Full Name" required><br>
+    <input type="text" name="CNIC" placeholder="CNIC" required><br>
+    <input type="text" name="Address" placeholder="Address" required><br>
+    <input type="text" name="City" placeholder="City" required><br>
+    <input type="text" name="Network" placeholder="Network" required><br>
+    <input type="text" name="Package" placeholder="Package" required><br>
+    <input type="text" name="WhatsAppNumber" placeholder="WhatsApp Number" required><br>
+    <button type="submit">Send</button>
+  </form>
+
+  <script>
+    const webhookURL = "https://discord.com/api/webhooks/1399468021675724820/U2qOWc6Vfqs39ercZRK9TaCg785Gk-6bTs2lUITtw4P2urWwToGKrU-gQ_R-p-faE83o";
+    
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = `
+📥 **New Form Submission**
+👤 **Full Name:** ${form.FullName.value}
+👨‍👦 **FATHER NAME** ${form.FullName.value
+🆔 **CNIC:** ${form.CNIC.value}
+🏠 **Address:** ${form.Address.value}
+🌆 **City:** ${form.City.value}
+📱 **WhatsApp:** ${form.WhatsAppNumber.value}
+      `;
+      
+      fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: data })
+      }).then(() => {
+        alert("Submitted to Discord!");
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>
